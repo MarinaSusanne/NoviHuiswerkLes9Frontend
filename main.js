@@ -161,3 +161,43 @@ const inventory = [
     sold: 8,
   },
 ];
+
+// OPDRACHT 1
+//opdracht 1a
+const televisionTypes = inventory.map((television) => {
+  return television.type;
+})
+console.log(televisionTypes);
+
+//opdracht 1b
+const soldOut = inventory.filter((television) =>{
+  if (television.originalStock - television.sold === 0){
+    return true;
+  }
+})
+console.log(soldOut);
+
+//opdracht 1c
+const containsAmbi = inventory.filter((television) =>{
+  if (television.options.ambiLight === true ){
+    return true;
+  }
+})
+console.log(containsAmbi);
+
+//opdracht 1d
+inventory.sort((a,b) => {
+  return a.price-b.price;
+})
+console.log(inventory);
+
+//OPDRACHT 2
+//opdracht 2a
+
+let soldTelevisions;
+for (let i=0; i<inventory.length; i++){
+
+
+}
+
+
