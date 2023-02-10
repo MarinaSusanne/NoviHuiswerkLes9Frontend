@@ -193,11 +193,38 @@ console.log(inventory);
 
 //OPDRACHT 2
 //opdracht 2a
-
-let soldTelevisions;
+let soldTelevisions=0;
 for (let i=0; i<inventory.length; i++){
-
-
+ soldTelevisions = soldTelevisions + inventory[i].sold;
 }
+console.log("Er zijn " + soldTelevisions + " verkocht");
 
+//opdracht 2b
+const element = document.getElementById("soldTVs");
+element.textContent = `Er zijn ${soldTelevisions} televisies verkocht`;
+
+//opdracht 2c
+let boughtTelevisions=0;
+for (let i=0; i<inventory.length; i++){
+  boughtTelevisions = boughtTelevisions + inventory[i].originalStock;
+}
+console.log("Er zijn " + boughtTelevisions + " ingekocht");
+
+//opdracht 2d
+const element2 = document.getElementById("boughtTVs");
+element2.textContent = `Er zijn ${boughtTelevisions} televisies oorspronkelijk ingekocht`;
+
+//opdracht 2e
+let televisionsNeedToBeSold=0;
+for (let i=0; i<inventory.length; i++){
+  televisionsNeedToBeSold = televisionsNeedToBeSold + (inventory[i].originalStock- inventory[i].sold);
+}
+console.log("Er zijn " + televisionsNeedToBeSold + " nog over");
+
+const element3 = document.getElementById("leftOver");
+element3.textContent = `Er zijn ${televisionsNeedToBeSold} televisies oorspronkelijk ingekocht`;
+
+
+//OPDRACHT3
+//opdracht3a
 
