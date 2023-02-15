@@ -161,3 +161,150 @@ const inventory = [
     sold: 8,
   },
 ];
+
+// OPDRACHT 1
+//opdracht 1a
+const televisionTypes = inventory.map((television) => {
+  return television.type;
+})
+console.log(televisionTypes);
+
+//opdracht 1b
+const soldOut = inventory.filter((television) =>{
+  if (television.originalStock - television.sold === 0){
+    return true;
+  }
+})
+console.log(soldOut);
+
+//opdracht 1c
+const containsAmbi = inventory.filter((television) =>{
+  if (television.options.ambiLight === true ){
+    return true;
+  }
+})
+console.log(containsAmbi);
+
+//opdracht 1d
+
+function sortingTv (){
+inventory.sort((a,b) => {
+  return a.price-b.price;
+})
+console.log(inventory);
+}
+// sortingTv(inventory); -->  Even uitgezet, want anders wordt Array gesorteerd
+
+
+//OPDRACHT 2
+//opdracht 2a
+let soldTelevisions=0;
+for (let i=0; i<inventory.length; i++){
+ soldTelevisions = soldTelevisions + inventory[i].sold;
+}
+console.log("Er zijn " + soldTelevisions + " verkocht");
+
+//opdracht 2b
+const element = document.getElementById("soldTVs");
+element.textContent = `Er zijn ${soldTelevisions} televisies verkocht`;
+
+//opdracht 2c
+let boughtTelevisions=0;
+for (let i=0; i<inventory.length; i++){
+  boughtTelevisions = boughtTelevisions + inventory[i].originalStock;
+}
+console.log("Er zijn " + boughtTelevisions + " ingekocht");
+
+// //opdracht 2d
+const element2 = document.getElementById("boughtTVs");
+element2.textContent = `Er zijn ${boughtTelevisions} televisies oorspronkelijk ingekocht`;
+
+//opdracht 2e
+let televisionsNeedToBeSold=0;
+for (let i=0; i<inventory.length; i++){
+  televisionsNeedToBeSold = televisionsNeedToBeSold + (inventory[i].originalStock- inventory[i].sold);
+}
+console.log("Er zijn " + televisionsNeedToBeSold + " nog over");
+
+const element3 = document.getElementById("leftOver");
+element3.textContent = `Er zijn ${televisionsNeedToBeSold} televisies op voorraad`;
+
+//OPDRACHT3
+//opdracht3a
+
+const showBrands = inventory.map((television) => {
+  return television.brand;
+})
+console.log(showBrands);
+
+const element4 = document.getElementById("testInnerHTML");
+element4.innerHTML =
+    `<p> De volgende merken zijn er: ${showBrands}</p>`;
+
+// // opdracht3b
+
+function tvsInList () {
+  let listOfBrands = [];
+  for (let i = 0; i < inventory.length; i++) {
+    listOfBrands[i] = inventory[i].brand;
+  }
+  console.log(listOfBrands);
+  const element5 = document.getElementById("listOfTelevisionBrands");
+  element5.textContent = `De volgende merknamen zijn er: ${listOfBrands}`;
+}
+
+tvsInList();
+
+
+//OPDRACHT 4
+//Opdracht 4a
+  function generateString (tvObject) {
+    return tvObject.brand + " " + tvObject.type + " - " + tvObject.name;
+  }
+  console.log(generateString(inventory[3]));
+
+//opdracht 4b
+  function showPrice (tvObject){
+    return "€ " +  tvObject.price + " .- "
+      }
+  console.log(showPrice(inventory[4]));
+
+
+  //opdracht 4c
+function createAvailableSizes(tvObject) {
+  let printing = "";
+  for (let i = 0; i < tvObject.availableSizes.length; i++) {
+    if (i === 0) {
+      printing = printing + tvObject.availableSizes[i] + " inch  ( " + tvObject.availableSizes[i] * (2.54) + " in cm)";
+    } else {
+      printing = printing + " | " + tvObject.availableSizes[i] + " inch  ( " + tvObject.availableSizes[i] * (2.54) + " in cm)";
+    }
+  }
+  return printing;
+}
+console.log(createAvailableSizes(inventory[2]));
+
+//opdracht 4d
+function printOneTv (tvObject) {
+  const element7 = document.getElementById("finalExercise");
+  element7.innerHTML =
+      `<h4> ${generateString(tvObject)} </h4
+       <h4> ${showPrice(tvObject)} </h4>
+       <h4> ${createAvailableSizes(tvObject)} </h4>
+       `;
+}
+printOneTv(inventory[2]);
+
+//Opdracht4e
+function allTelevisionsVisible (listOfTvs) {
+const finalExercise = document.getElementById("finalExercise");
+  const htmlPrint = listOfTvs.map((tv)=> {
+    return `<article>
+       <h4> ${generateString(tv)} </h4>
+       <h4> ${showPrice(tv)} </h4>
+       <h4> ${createAvailableSizes(tv)} </h4>
+       </article>`;
+  })
+  finalExercise.innerHTML = htmlPrint.join(" - ") }
+  allTelevisionsVisible(inventory);
+
